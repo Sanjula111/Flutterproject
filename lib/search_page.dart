@@ -23,6 +23,7 @@ class SearchPage extends StatelessWidget {
                   hintText: 'Search anything...',
                   prefixIcon: const Icon(Icons.search, color: Colors.teal),
                   filled: true,
+                  // ignore: deprecated_member_use
                   fillColor: Colors.white.withOpacity(0.9),
                   contentPadding: const EdgeInsets.symmetric(vertical: 16.0),
                   border: OutlineInputBorder(

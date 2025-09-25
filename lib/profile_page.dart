@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'main.dart'; // For EditProfilePage
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -15,9 +16,9 @@ class ProfilePage extends StatelessWidget {
       ),
       child: Center(
         child: Card(
-          elevation: 8,
+          elevation: 10,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(24),
+            borderRadius: BorderRadius.circular(28),
           ),
           margin: const EdgeInsets.symmetric(horizontal: 32, vertical: 80),
           child: Padding(
@@ -25,12 +26,38 @@ class ProfilePage extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const CircleAvatar(
-                  radius: 50,
-                  backgroundImage: AssetImage(
-                    'assets/profile.jpg',
-                  ), // Add your image in assets
-                  backgroundColor: Colors.white,
+                Stack(
+                  alignment: Alignment.bottomRight,
+                  children: [
+                    const CircleAvatar(
+                      radius: 50,
+                      backgroundImage: AssetImage('assets/profile.jpg'),
+                      backgroundColor: Colors.white,
+                    ),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => const EditProfilePage(),
+                          ),
+                        );
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          color: Colors.purpleAccent,
+                          shape: BoxShape.circle,
+                          border: Border.all(color: Colors.white, width: 2),
+                        ),
+                        padding: const EdgeInsets.all(8),
+                        child: const Icon(
+                          Icons.edit,
+                          color: Colors.white,
+                          size: 20,
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 20),
                 const Text(
@@ -59,7 +86,14 @@ class ProfilePage extends StatelessWidget {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton.icon(
-                  onPressed: () {},
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const EditProfilePage(),
+                      ),
+                    );
+                  },
                   icon: const Icon(Icons.edit),
                   label: const Text('Edit Profile'),
                   style: ElevatedButton.styleFrom(
@@ -78,7 +112,7 @@ class ProfilePage extends StatelessWidget {
     );
   }
 
-  Widget _buildStat(String label, String count) {
+  static Widget _buildStat(String label, String count) {
     return Column(
       children: [
         Text(
