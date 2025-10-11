@@ -1,9 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 import 'home_page.dart';
 import 'profile_page.dart';
-import 'search_page.dart'; // Add this import
+import 'search_page.dart';
+import 'auth_pages.dart'; // Import your login/register pages
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Supabase.initialize(
+    url: 'YOUR_SUPABASE_URL', // Replace with your Supabase project URL
+    anonKey: 'YOUR_SUPABASE_ANON_KEY', // Replace with your anon public key
+  );
   runApp(const MyApp());
 }
 
@@ -12,7 +19,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(home: HomeScreen());
+    return const MaterialApp(
+      home: LoginPage(), // Show login page first
+    );
   }
 }
 
